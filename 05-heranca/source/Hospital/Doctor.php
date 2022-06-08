@@ -2,7 +2,7 @@
 
 namespace Source\Hospital;
 
-use Source\User;
+use Source\General\User;
 
 class Doctor extends User
 {

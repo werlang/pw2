@@ -1,6 +1,6 @@
 <?php
 
-namespace Source;
+namespace Source\General;
 
 class User
 {

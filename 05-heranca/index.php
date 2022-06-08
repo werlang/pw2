@@ -2,7 +2,7 @@
 
 require __DIR__ . "/source/autoload.php";
 
-$user = new \Source\User("Fábio","fabiosantos@ifsul.edu.br");
+$user = new \Source\General\User("Fábio","fabiosantos@ifsul.edu.br");
 
 var_dump($user);
 

@@ -2,7 +2,7 @@
 
 namespace Source\Records;
 
-use Source\User;
+use Source\General\User;
 
 class Patient extends User
 {
