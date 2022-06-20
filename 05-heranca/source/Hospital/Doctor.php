@@ -16,4 +16,38 @@ class Doctor extends User
         $this->specialty = $specialty;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getRegister()
+    {
+        return $this->register;
+    }
+
+    /**
+     * @param mixed $register
+     */
+    public function setRegister($register): void
+    {
+        $this->register = $register;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSpecialty()
+    {
+        return $this->specialty;
+    }
+
+    /**
+     * @param mixed $specialty
+     */
+    public function setSpecialty($specialty): void
+    {
+        $this->specialty = $specialty;
+    }
+
+
+
 }

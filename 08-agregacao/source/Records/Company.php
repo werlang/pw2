@@ -35,9 +35,9 @@ class Company
         return $this->address;
     }
 
-    public function addService(Services $product)
+    public function addService(Services $service)
     {
-        $this->services[] = $product;
+        $this->services[] = $service;
     }
 
     /**

@@ -12,6 +12,8 @@ $userDoctor = new \Source\Hospital\Doctor(
     "12435676",
     "Oncologista");
 
+echo "Nome {$userDoctor->getName()}";
+
 var_dump($userDoctor);
 
 $userPatient = new \Source\Records\Patient(
