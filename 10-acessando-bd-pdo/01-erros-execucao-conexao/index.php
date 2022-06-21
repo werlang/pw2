@@ -31,16 +31,3 @@ try {
     var_dump($exception);
     echo "<p>{$exception->getMessage()}</p>";
 }
-
-//var_dump($pdo);
-
-echo "---------------";
-
-require __DIR__ . "/../source/autoload.php";
-
-use Source\Database\Connect;
-
-$pdo = Connect::getInstance();
-$pdo2 = Connect::getInstance();
-
-var_dump($pdo,$pdo2);
