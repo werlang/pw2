@@ -49,7 +49,7 @@ try {
 
 echo "<h2>DELETE com Exec</h2>";
 
-$delete = "DELETE FROM users WHERE id = 5";
+$delete = "DELETE FROM users WHERE id > 5";
 
 try {
     $query = Connect::getInstance()->exec($delete);
