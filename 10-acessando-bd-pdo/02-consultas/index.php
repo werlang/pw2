@@ -41,21 +41,11 @@ echo "<h2>UPDATE com Exec</h2>";
 
 $update = "UPDATE users SET name = 'Carlos Eduardo Cunnha' WHERE id = 5";
 
-try {
-   $query = $db->exec($update);
-   var_dump($query);
-} catch (PDOException $exception) {
-    var_dump($exception);
-}
+$query = $db->exec($update);
+var_dump($query);
 
 echo "<h2>DELETE com Exec</h2>";
 
 $delete = "DELETE FROM users WHERE id > 5";
-
-try {
-    $query = $db->exec($delete);
-    var_dump($query);
-} catch (PDOException $exception) {
-    var_dump($exception);
-}
-
+$query = $db->exec($delete);
+var_dump($query);
