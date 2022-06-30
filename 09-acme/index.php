@@ -11,7 +11,7 @@ $client = new \Source\Clients\Client(
     "Fábio Santos",
     "fabiosantos@ifsul.edu.br",
     "1233456",
-    "12/02/1976",
+    "1976-02-12",
     $address
 );
 

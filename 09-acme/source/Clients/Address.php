@@ -2,16 +2,28 @@
 
 namespace Source\Clients;
 
+/**
+ *
+ */
 class Address
 {
-    private $street;
-    private $number;
+    /**
+     * @var string|null
+     */
+    private string $street;
+    /**
+     * @var string|null
+     */
+    private string $number;
 
     /**
-     * @param $street
-     * @param $number
+     * @param string|null $street
+     * @param string|null $number
      */
-    public function __construct($street, $number)
+    public function __construct(
+        string $street = NULL, 
+        string $number = NULL
+    )
     {
         $this->street = $street;
         $this->number = $number;
@@ -49,9 +61,22 @@ class Address
         $this->number = $number;
     }
 
+    /**
+     * @return string
+     */
     public function show() : string
     {
         return "{$this->street}, {$this->getNumber()}";
+    }
+
+    public function insert()
+    {
+        
+    }
+
+    public function findByIdClient()
+    {
+        
     }
 
 }
