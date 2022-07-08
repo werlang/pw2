@@ -28,15 +28,10 @@ if ($_GET["action"] === "get") {
     $query = $conn->prepare($sql);
     $query->execute($field_data);
 
-    $count = 0;
-    while ($result = $query->fetch(PDO::FETCH_OBJ)) {
-        $row = [];
-        foreach ($result as $key => $value) {
-            $row[$key] = $value;
-        }
-        $output["results"][$count] = $row;
-        $count++;
-    }
+    $output["results"] = $query->fetchAll(PDO::FETCH_OBJ);
+    // while ($result = $query->fetch(PDO::FETCH_OBJ)) {
+    //     $output["results"][] = $result;
+    // }
     $output["message"] = "OK";
 }
 else if ($_GET["action"] === "insert") {
