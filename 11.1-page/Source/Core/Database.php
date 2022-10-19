@@ -49,6 +49,10 @@ class Database {
         return $stmt;
     }
 
+    public function getLastId() {
+        return self::getInstance()->lastInsertId();
+    }
+
     public function queryAll($query, $args) {
         $stmt = $this->query($query, $args);
         return $stmt->fetchAll();

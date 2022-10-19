@@ -18,13 +18,9 @@ class User {
         $this->id = $id;
         $this->name = $name;
         $this->email = $email;
-
-        if ($password) {
-            $this->password = password_hash($password, PASSWORD_DEFAULT);
-        }
+        $this->password = $password;
 
         $this->db = new \Source\Core\Database();
-    
     }
 
     public function getName() {
@@ -35,9 +31,9 @@ class User {
         return $this->email;
     }
 
-    public function getById($id) {
+    public function getById() {
         $query = "SELECT * FROM users WHERE id = :id";
-        $stmt = $this->db->query($query, [ "id" => $id ]);
+        $stmt = $this->db->query($query, [ "id" => $this->id ]);
 
         if($stmt->rowCount() == 0){
             return false;
@@ -72,6 +68,37 @@ class User {
             "name" => $this->name,
             "email" => $this->email
         ];
+    }
+
+    public function insert() {
+        $query = "INSERT INTO users(name, email, password) VALUES (:name, :email, :password)";
+        $stmt = $this->db->query($query, [
+            "email" => $this->email,
+            "name" => $this->name,
+            "password" => password_hash($this->password)
+        ]);
+
+        $this->id = $this->db->getLastId();
+        return $this;
+    }
+
+    public function login() {
+        $query = "SELECT * FROM users WHERE email = :email";
+        $stmt = $this->db->query($query, [ "email" => $this->email ]);
+
+        if($stmt->rowCount() == 0){
+            return false;
+        }
+
+        $user = $stmt->fetch();
+
+        if (!password_verify($this->password, $user->password)) {
+            return false;
+        }
+
+        $this->id = $user->id;
+        $this->name = $user->name;
+        return $this;
     }
 
 }

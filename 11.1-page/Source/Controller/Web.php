@@ -16,8 +16,23 @@ class Web {
         include __DIR__ . "/../View/about.html";
     }
 
+    public function login() {
+        echo $this->view->render('login', []);
+    }
+
+    public function register() {
+        echo $this->view->render('register', []);
+    }
+
     public function profile() {
-        $user = new \Source\Model\User(NULL, "Pablo", "pablowerlang@ifsul.edu.br", "123456");
+        session_start();
+        if (!isset($_SESSION["user"])) {
+            header("Location:index.php");
+            return;
+        }
+        
+        $user = new \Source\Model\User($_SESSION["user"]->getInfo()["id"]);
+        $user->getById();
         
         // include __DIR__ . "/../View/profile.html";
 
