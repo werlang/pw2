@@ -75,7 +75,7 @@ class User {
         $stmt = $this->db->query($query, [
             "email" => $this->email,
             "name" => $this->name,
-            "password" => password_hash($this->password)
+            "password" => password_hash($this->password, PASSWORD_DEFAULT)
         ]);
 
         $this->id = $this->db->getLastId();

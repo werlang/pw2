@@ -8,8 +8,8 @@ class Web {
     }
 
     public function home() {
-        // include __DIR__ . "/index.html";
-        echo $this->view->render('index', []);
+        // include __DIR__ . "/../View/index.html";
+        $this->view->render('index', []);
     }
 
     public function about() {
@@ -17,14 +17,21 @@ class Web {
     }
 
     public function login() {
-        echo $this->view->render('login', []);
+        $this->view->render('login', []);
     }
 
     public function register() {
-        echo $this->view->render('register', []);
+        $this->view->render('register', []);
     }
 
     public function profile() {
+        // include __DIR__ . "/../View/profile.html";
+
+        // $user = new \Source\Model\User(NULL, "aaa", "aaa", "aaa");
+
+        // echo "<input type='hidden' class='template-vars' id='name' value='{$user->getName()}'>";
+        // echo "<input type='hidden' class='template-vars' id='email' value='{$user->getEmail()}'>";
+
         session_start();
         if (!isset($_SESSION["user"])) {
             header("Location:index.php");
@@ -33,11 +40,7 @@ class Web {
         
         $user = new \Source\Model\User($_SESSION["user"]->getInfo()["id"]);
         $user->getById();
-        
-        // include __DIR__ . "/../View/profile.html";
 
-        // echo "<input type='hidden' class='template-vars' id='name' value='{$user->getName()}'>";
-        // echo "<input type='hidden' class='template-vars' id='email' value='{$user->getEmail()}'>";
         $this->view->render('profile', [
             "name" => $user->getName(),
             "email" => $user->getEmail()
