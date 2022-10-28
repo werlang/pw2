@@ -4,7 +4,8 @@ namespace Source\Controller;
 
 class Api {
 
-    public function get(?array $data) {
+    public function get($data) {
+        header('Content-Type: application/json;');
         $user = new \Source\Model\User($data['id']);
         $user = $user->getById();
 
@@ -17,6 +18,7 @@ class Api {
     }
 
     public function getAll() {
+        header('Content-Type: application/json;');
         $users = \Source\Model\User::getAll();
         $data = [];
 
@@ -29,12 +31,13 @@ class Api {
         echo json_encode($data);
     }
 
-    public function login() {
-        if (!$_POST || !$_POST["email"] || !$_POST["password"]) {
+    public function login($data) {
+        header('Content-Type: application/json;');
+        if (!$data || !$data["email"] || !$data["password"]) {
             $output = [ "error" => "Must provide email and password" ];
         }
         else {
-            $user = new \Source\Model\User(NULL, NULL, $_POST["email"], $_POST["password"]);
+            $user = new \Source\Model\User(NULL, NULL, $data["email"], $data["password"]);
             
             if ($user->login()) {
                 session_start();
@@ -49,12 +52,13 @@ class Api {
         echo json_encode($output);
     }
 
-    public function register() {
-        if (!$_POST || !$_POST["email"] || !$_POST["password"] || !$_POST["name"]) {
+    public function register($data) {
+        header('Content-Type: application/json;');
+        if (!$data || !$data["email"] || !$data["password"] || !$data["name"]) {
             $output = [ "error" => "Must inform all fields" ];
         }
         else {
-            $user = new \Source\Model\User(NULL, $_POST["name"], $_POST["email"], $_POST["password"]);
+            $user = new \Source\Model\User(NULL, $data["name"], $data["email"], $data["password"]);
             $user->insert();
 
             $output["user"] = $user->getInfo();
