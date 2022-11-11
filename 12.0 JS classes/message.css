@@ -1,0 +1,36 @@
+.message {
+    background-color: #72caad;
+    padding: 20px 40px;
+    display: flex;
+    margin: 10px;
+    font-family: sans-serif;
+    border-radius: 5px;
+    width: 300px;
+}
+
+.message.hidden {
+    display: none;
+}
+
+.message.fade {
+    transition: 1s;
+    opacity: 0;
+}
+
+.window {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.window button {
+    width: 100px;
+    border: none;
+    border-radius: 5px;
+    background-color: #256b6b;
+    padding: 5px 10px;
+    color: white;
+    margin-top: 10px;
+    cursor: pointer;
+    outline: none;
+}
