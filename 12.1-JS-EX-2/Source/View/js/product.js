@@ -6,6 +6,7 @@ class Product {
     #description = null;
     #price = null;
     #quantity = null;
+    #image = null;
 
     constructor(
         id = null,
@@ -13,6 +14,7 @@ class Product {
         description = null,
         price = null,
         quantity = null,
+        image = null,
     ) {
         this.#id = id;
 
@@ -27,6 +29,9 @@ class Product {
         }
         if (quantity && quantity != '') {
             this.#quantity = quantity;
+        }
+        if (image && image != '') {
+            this.#image = image;
         }
     }
 
@@ -46,6 +51,7 @@ class Product {
             description: this.#description,
             price: this.#price,
             quantity: this.#quantity,
+            image: this.#image,
         }
         const resp = await request('products', { method: 'POST', body: body });
         if (resp.id) {
@@ -71,6 +77,9 @@ class Product {
         if (this.#quantity) {
             body.quantity = this.#quantity;
         }
+        if (this.#image) {
+            body.image = this.#image;
+        }
         
         const resp = await request(`products/${id}`, { method: 'PUT', body: body });
 
@@ -84,6 +93,7 @@ class Product {
             description: this.#description,
             price: this.#price,
             quantity: this.#quantity,
+            image: this.#image,
         }
     }
 }
