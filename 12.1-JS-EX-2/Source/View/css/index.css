@@ -1,76 +1,75 @@
-#carousel-container {
-    max-width: 900px;
-    width: 100%;
+body {
+    margin: 0;
+}
+
+header {
+    display: flex;
+    justify-content: flex-end;
+    height: 50px;
+    align-items: center;
+    padding: 0 10px;
+    background-color: #974b97;
+    border-bottom: 1px solid #3f1f3f;
+    margin-bottom: 10px;
+}
+
+header #cart-button {
+    font-size: 1.5rem;
+    border-radius: 100%;
+    background-color: #242424;
+    padding: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-}
-
-#carousel-container button {
-    padding: 0;
-    border: none;
-    background-color: transparent;
-    outline: none;
-    font-size: 2rem;
-    margin: 0px 5px;
+    cursor: pointer;
     transition: 0.3s all;
 }
 
-#carousel-container button:hover {
-    filter: brightness(1.2);
+header #cart-button:hover {
+    filter: brightness(1.3);
 }
 
-#carousel {
+#frame {
     display: flex;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    border: 1px solid rgba(0, 0, 0, 0.658);
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.423);
-    background-color: #ececec;
-    border-radius: 5px;
-}
-
-#carousel .item {
-    display: none;
     flex-direction: column;
     align-items: center;
-    transition: 0.3s margin ease-in, 0.3s opacity ease-in;
 }
 
-#carousel .item.active {
+#list-container {
     display: flex;
-}
-
-#carousel .item.slideLeft {
-    margin-left: -200px;
-    opacity: 0;
-}
-
-#carousel .item.slideRight {
-    margin-left: 200px;
-    opacity: 0;
-}
-
-#carousel img {
-    max-width: 100%;
-    height: 400px;
-}
-
-#carousel span {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.4rem;
     font-family: sans-serif;
-    height: 35px;
-    background-color: #0000004d;
-    color: white;
-    text-shadow: 0px 0px 3px black;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+
+#list-container .item {
+    display: flex;
+    padding: 15px 10px;
+    margin: 5px;
+    border: 1px solid #829370;
+    box-shadow: 1px 1px 5px #0000006c;
+    background-color: #d9f0c0;
     border-radius: 5px;
-    padding: 0 10px;
-    margin-top: -40px;
-    margin-bottom: 5px;
+    cursor: pointer;
+    transition: 0.3s all;
+}
+
+#list-container .item:hover {
+    filter: brightness(1.05);
+}
+
+#list-container .item img {
+    max-width: 150px;
+    margin-right: 10px;
+    border-radius: 3px;
+}
+
+#list-container .item .info div {
+    margin: 5px 0;
+    word-wrap: break-word;
+    max-width: 300px;
+}
+
+#list-container .item .info div span {
+    font-weight: bold;
 }

@@ -1,0 +1,76 @@
+#fog {
+    width: 100vw;
+    height: 100vh;
+    background-color: #0000005f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+#fog #window {
+    width: 400px;
+    height: 300px;
+    background-color: #f3d7f3;
+    border-radius: 5px;
+    border: 1px solid #3f1f3f;
+    box-shadow: 2px 2px 5px black;
+    padding: 10px 20px;
+    font-family: sans-serif;
+}
+
+#fog #window .product {
+    margin-bottom: 20px;
+    background-color: #00000010;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+#fog #window .product .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+
+#fog #window .product .row img {
+    width: 50px;
+    margin-right: 10px;
+    border-radius: 3px;
+}
+
+#fog #window .product .row .name,
+#fog #window .product .row .price {
+    font-weight: bold;
+}
+
+#fog #window .product .row .decrease {
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+#fog #window .product .row .increase {
+    margin-left: 5px;
+}
+
+#fog #window .product .row .decrease,
+#fog #window .product .row .increase {
+    cursor: pointer;
+    transition: 0.3s all;
+    padding: 5px;
+    border-radius: 100%;
+
+}
+
+#fog #window .product .row .decrease:hover,
+#fog #window .product .row .increase:hover {
+    filter: brightness(1.1);
+    background-color: #00000010;
+}
+
+#fog #window .product .row .quantity {
+    font-weight: bold;
+}
