@@ -8,13 +8,15 @@ class Product {
     private $description;
     private $price;
     private $quantity;
+    private $image;
 
     public function __construct(
         $id = NULL,
         $name = NULL, 
         $description = NULL, 
         $price = NULL,
-        $quantity = NULL
+        $quantity = NULL,
+        $image = NULL
     )
     {
         $this->id = $id;
@@ -22,6 +24,7 @@ class Product {
         $this->description = $description;
         $this->price = $price;
         $this->quantity = $quantity;
+        $this->image = $image;
 
         $this->db = new \Source\Core\Database();
     }
@@ -40,6 +43,7 @@ class Product {
         $this->description = $product->description;
         $this->price = $product->price;
         $this->quantity = $product->quantity;
+        $this->image = $product->image;
 
         return $this;
     }
@@ -59,7 +63,8 @@ class Product {
                 $prod->name,
                 $prod->description,
                 $prod->price,
-                $prod->quantity
+                $prod->quantity,
+                $prod->image,
             );
         }
         return $products;
@@ -71,17 +76,19 @@ class Product {
             "name" => $this->name,
             "description" => $this->description,
             "price" => $this->price,
-            "quantity" => $this->quantity
+            "quantity" => $this->quantity,
+            "image" => $this->image
         ];
     }
 
     public function insert() {
-        $query = "INSERT INTO products(name, description, price, quantity) VALUES (:name, :description, :price, :quantity)";
+        $query = "INSERT INTO products(name, description, price, quantity, image) VALUES (:name, :description, :price, :quantity, :image)";
         $stmt = $this->db->query($query, [
             "name" => $this->name,
             "description" => $this->description,
             "price" => $this->price,
-            "quantity" => $this->quantity
+            "quantity" => $this->quantity,
+            "image" => $this->image
         ]);
 
         $this->id = $this->db->getLastId();
@@ -90,40 +97,46 @@ class Product {
 
     public function update() {
         $fields = [];
-        $values = [];
 
         if (isset($this->name)) {
-            $fields[] = "name";
-            $values[] = $this->name;
+            $fields[] = [
+                "name" => "name",
+                "value" => $this->name
+            ];
         }
         if (isset($this->description)) {
-            $fields[] = "description";
-            $values[] = $this->description;
+            $fields[] = [
+                "name" => "description",
+                "value" => $this->description
+            ];
         }
         if (isset($this->price)) {
-            $fields[] = "price";
-            $values[] = $this->price;
+            $fields[] = [
+                "name" => "price",
+                "value" => $this->price
+            ];
         }
         if (isset($this->quantity)) {
-            $fields[] = "quantity";
-            $values[] = $this->quantity;
+            $fields[] = [
+                "name" => "quantity",
+                "value" => $this->quantity
+            ];
+        }
+        if (isset($this->image)) {
+            $fields[] = [
+                "name" => "image",
+                "value" => $this->image
+            ];
         }
 
-        $queryText = [];
-        $queryVars = [ "id" => $this->id ];
-        foreach($fields as $i => $field) {
-            $value = $values[$i];
-            $queryText[] = "$field = :$field";
-            $queryVars[$field] = $value;
-        }
-        $queryText = implode(',', $queryText);
-
-        $query = "UPDATE products SET $queryText WHERE id = :id";
-        // return $queryText;
-        $stmt = $this->db->query($query, $queryVars);
-
-        if($stmt->rowCount() == 0){
-            return false;
+        foreach($fields as $field) {
+            $fieldName = $field["name"];
+            $value = $field["value"];
+            $sql = "UPDATE products SET $fieldName = :value WHERE id = :id";
+            $stmt = $this->db->query($sql, [
+                "value" => $value,
+                "id" => $this->id
+            ]);
         }
 
         $this->getById();

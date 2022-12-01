@@ -19,6 +19,7 @@ document.querySelector('#insert button').addEventListener('click', async () => {
         document.querySelector('#insert #description').value,
         document.querySelector('#insert #price').value,
         document.querySelector('#insert #quantity').value,
+        document.querySelector('#insert #image').value,
     );
 
     const resp = await product.insert();
@@ -32,6 +33,7 @@ document.querySelector('#change button').addEventListener('click', async () => {
         document.querySelector('#change #description').value,
         document.querySelector('#change #price').value,
         document.querySelector('#change #quantity').value,
+        document.querySelector('#change #image').value,
     );
 
     const resp = await product.update();

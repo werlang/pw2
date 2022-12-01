@@ -24,7 +24,7 @@ class Api {
             $output = [ "error" => "Must inform all fields" ];
         }
         else {
-            $product = new \Source\Model\Product(NULL, $data["name"], $data["description"], $data["price"], $data["quantity"]);
+            $product = new \Source\Model\Product(NULL, $data["name"], $data["description"], $data["price"], $data["quantity"], $data["image"]);
             $product->insert();
 
             $output["product"] = $product->getInfo();
@@ -62,8 +62,9 @@ class Api {
             $data["description"] =  isset($data["description"]) ? $data["description"] : null;
             $data["price"] =  isset($data["price"]) ? $data["price"] : null;
             $data["quantity"] =  isset($data["quantity"]) ? $data["quantity"] : null;
+            $data["image"] =  isset($data["image"]) ? $data["image"] : null;
             
-            $product = new \Source\Model\Product($data["id"], $data["name"], $data["description"], $data["price"], $data["quantity"]);
+            $product = new \Source\Model\Product($data["id"], $data["name"], $data["description"], $data["price"], $data["quantity"], $data["image"]);
             $resp = $product->update();
 
             if (!$resp) {
