@@ -1,0 +1,9 @@
+<Limit GET HEAD POST PUT DELETE OPTIONS>
+    Require all granted
+</Limit>
+
+RewriteEngine On
+
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?route=/$1 [L,QSA]
