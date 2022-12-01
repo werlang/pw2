@@ -30,7 +30,10 @@ async function main() {
                 <div class="price">Preço: <span>R$ ${ e.price.toFixed(2) }</span></div>
             </div>
         `;
-        item.addEventListener('click', () => cart.add(e, 1));
+        item.addEventListener('click', () => {
+            cart.add(e, 1);
+            cart.show();
+        });
         document.querySelector('#list-container').appendChild(item);
     });
 
