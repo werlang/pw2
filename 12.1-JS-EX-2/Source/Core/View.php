@@ -3,6 +3,9 @@
 namespace Source\Core;
 
 class View {
+    private $path;
+    private $templates;
+
     public function __construct($path) {
         $this->path = $path;
         $this->templates = new \Mustache_Engine();

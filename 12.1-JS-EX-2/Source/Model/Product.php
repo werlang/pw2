@@ -9,6 +9,7 @@ class Product {
     private $price;
     private $quantity;
     private $image;
+    private $db;
 
     public function __construct(
         $id = NULL,
